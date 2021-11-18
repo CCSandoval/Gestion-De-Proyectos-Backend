@@ -1,33 +1,27 @@
-import conectarBD from "./db/db"
-import { Enum_Rol } from "./models/enums";
-import { UserModel } from "./models/user";
+import express from "express";
+import cors from "cors";
+import { ApolloServer } from "apollo-server-express";
+import dotenv from "dotenv";
+import conectarBD from "./db/db";
+import { types } from "./graphql/types";
+import { resolvers } from "./graphql/resolvers";
 
-const main = async() =>{
-    await conectarBD();
+dotenv.config({ path: "./.env" });
 
-    // CREAR UN USUARIO
-  await UserModel.create({
-    apellido: 'Sandoval',
-    correo: 'krcamilo0417@gmail.com',
-    identificacion: '1115448153',
-    nombre: 'Cristian',
-    rol: Enum_Rol.administrador,
-  })
-    .then((u) => {
-      console.log('usuario creado', u);
+const server = new ApolloServer({ typeDefs: types, resolvers: resolvers });
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+
+app.listen({ port: process.env.PORT || 5001 }, async () => {
+  await conectarBD();
+  await server
+    .start()
+    .then(() => {
+      console.log(`🚀 Servidor iniciado en: ${process.env.PORT || 5001}`);
     })
-    .catch((e) => {
-      console.error('Error creando el usuario', e);
-    });
-
-  // OBTENER LOS USUARIOS
-  // await UserModel.find()
-  //   .then((u) => {
-  //     console.log('usuarios', u);
-  //   })
-  //   .catch((e) => {
-  //     console.error('error obteniendo los usuarios', e);
-  //   });
-};
-
-main();
+    .catch((e) => console.log(`🆘 Error iniciando el servidor: ${e}`));
+  server.applyMiddleware({ app });
+});
