@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Enum_InscriptionState } from "./enums";
+import { Enum_InscriptionState } from "./enums/enums";
 import { UserModel } from "./user";
 
 interface Inscription {
