@@ -10,4 +10,10 @@ enum Enum_UserState {
   PENDIENTE = "PENDIENTE",
 }
 
-export { Enum_UserRol, Enum_UserState };
+enum Enum_InscriptionState {
+  ACEPTADA = "ACEPTADA",
+  RECHAZADA = "RECHAZADA",
+  PENDIENTE = "PENDIENTE",
+}
+
+export { Enum_UserRol, Enum_UserState, Enum_InscriptionState };
