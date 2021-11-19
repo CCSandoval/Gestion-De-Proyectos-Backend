@@ -1,3 +1,4 @@
+import { advancementModel } from "../models/advance";
 import { InscriptionModel } from "../models/inscription";
 import { UserModel } from "../models/user";
 
@@ -13,6 +14,11 @@ export const resolvers = {
       );
       return inscripciones;
     },
+
+    Avances: async (parent,args) =>{
+      const avances = await advancementModel.find().populate('proyecto').populate('creadoPor');
+      return avances;
+    }
   },
   Mutation: {
     crearInscripcion: async (parent, args) => {
@@ -25,5 +31,15 @@ export const resolvers = {
       });
       return inscripcion;
     },
+
+    crearAvance: async (parent, args) => {
+      const avance = await advancementModel.create({
+        fecha: args.fecha,
+        descripcion: args.descripcion,
+        creadPor: args.creadPor,
+        proyecto: args.proyecto,
+      });
+      return avance;
+    }
   },
 };
