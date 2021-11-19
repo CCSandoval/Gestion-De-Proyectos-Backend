@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { Enum_InscriptionState } from "./enums";
+import { ProjectModel } from "./projects";
 import { UserModel } from "./user";
 
 interface Inscription {
@@ -29,6 +30,8 @@ const InscriptionSchema = new Schema<Inscription>({
   },
   proyecto: {
     type: Schema.Types.ObjectId,
+    ref: ProjectModel,
+    requiered: true,
   },
   estudiante: {
     type: Schema.Types.ObjectId,
