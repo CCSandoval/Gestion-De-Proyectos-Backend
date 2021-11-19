@@ -16,4 +16,20 @@ enum Enum_InscriptionState {
   PENDIENTE = "PENDIENTE",
 }
 
-export { Enum_UserRol, Enum_UserState, Enum_InscriptionState };
+enum Enum_EstadoProyecto{
+  ACTIVO = "ACTIVO",
+  INACTIVO = "INACTIVO",
+}
+
+enum Enum_TipoObjetivo{
+  ESPECIFICO = "ESPECIFICO",
+  GENERAL = "GENERAL",
+}
+
+enum Enum_FaseProyecto{
+  DESARROLLO = "DESARROLLO",
+  INICIADO = "INICIADO",
+  TERMINADO = "TERMINADO",
+  NULL = "NULL",
+}
+export { Enum_UserRol, Enum_UserState, Enum_InscriptionState, Enum_EstadoProyecto, Enum_TipoObjetivo, Enum_FaseProyecto };
