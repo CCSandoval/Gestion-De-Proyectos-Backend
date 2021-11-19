@@ -1,6 +1,7 @@
-import { advancementModel } from "../models/advance";
+import { advancementModel } from "../models/Avance/advance";
 import { InscriptionModel } from "../models/inscription";
 import { UserModel } from "../models/user";
+import { resolverAvance } from "../models/Avance/resolver";
 
 export const resolvers = {
   Query: {
@@ -31,15 +32,7 @@ export const resolvers = {
       });
       return inscripcion;
     },
-
-    crearAvance: async (parent, args) => {
-      const avance = await advancementModel.create({
-        fecha: args.fecha,
-        descripcion: args.descripcion,
-        creadPor: args.creadPor,
-        proyecto: args.proyecto,
-      });
-      return avance;
-    }
   },
 };
+
+export const resolver =[resolverAvance]

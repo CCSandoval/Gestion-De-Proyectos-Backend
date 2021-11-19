@@ -1,4 +1,5 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express';
+import { tiposAvance } from '../models/Avance/tipos';
 
 export const types = gql`
   scalar Date
@@ -40,15 +41,6 @@ export const types = gql`
     estudiante: Usuario!
   }
 
-  type Avance{
-    _id: ID!
-    fecha: Date;
-    descripcion: String;
-    observaciones: [String];
-    proyecto: Proyecto;
-    creadPor: Usuario!;
-  }
-
   type Query {
     Usuarios: [Usuario]
     Inscripciones: [Inscripcion]
@@ -62,12 +54,7 @@ export const types = gql`
       proyecto: String
       estudiante: String!
     ): Inscripcion
-
-    crearAvance(
-      fecha: Date!
-      descripcion: String!
-      proyecto: String!
-      creadPor: String!
-    )
   }
 `;
+
+export const tipos = [tiposAvance]
