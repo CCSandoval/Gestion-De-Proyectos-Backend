@@ -57,11 +57,11 @@ const ProjectSchema = new Schema<Project>({
             },
         },
     ],
-    inscripciones:{
-        type: Schema.Types.ObjectId,
-        ref: InscriptionModel,
-        required: true,
-      },
+    // inscripciones:{
+    //     type: Schema.Types.ObjectId,
+    //     ref: InscriptionModel,
+    //     required: true,
+    //   },
     avances:{
         type: Schema.Types.ObjectId,
     }
