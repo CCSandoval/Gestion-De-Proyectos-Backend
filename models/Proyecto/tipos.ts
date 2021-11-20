@@ -40,6 +40,7 @@ type Proyecto{
     fase: Enum_FaseProyecto!
     objetivo: [Objetivo]
     avances: [Avance]
+    inscripciones: [Inscripcion]
     lider: Usuario!
 }
 

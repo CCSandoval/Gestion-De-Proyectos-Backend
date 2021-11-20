@@ -57,14 +57,23 @@ const ProjectSchema = new Schema<Project>({
             },
         },
     ],
-    // inscripciones:{
-    //     type: Schema.Types.ObjectId,
-    //     ref: InscriptionModel,
-    //     required: true,
-    //   },
-    avances:{
-        type: Schema.Types.ObjectId,
-    }
+},
+{
+  toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
+  toObject: { virtuals: true }, // So `console.log()` and other functions that use `toObject()` include virtuals
+}
+);
+
+ProjectSchema.virtual('avances', {
+  ref: 'Avance',
+  localField: '_id',
+  foreignField: 'proyecto',
+});
+
+ProjectSchema.virtual('inscripciones', {
+  ref: 'Inscripcion',
+  localField: '_id',
+  foreignField: 'proyecto',
 });
 
 export const ProjectModel = model("Proyecto", ProjectSchema);
