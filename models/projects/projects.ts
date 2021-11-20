@@ -45,15 +45,16 @@ const projectSchema = new Schema<Project>({
     fase:{
         type:String,
         enum:Enum_FaseProject,
+        // default: Enum_FaseProject.NULL,
     },
     lider:{
         type:Schema.Types.ObjectId,
         require: true,
         ref: UserModel,
-    }
-}
+    },
+},
 
-)
+);
 const ProjectModel = model('Proyecto', projectSchema);
 
 export {ProjectModel};

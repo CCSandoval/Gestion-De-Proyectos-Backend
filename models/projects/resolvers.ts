@@ -4,7 +4,7 @@ import {ProjectModel} from './projects'
 const projectResolvers ={
 
     Query:{ Proyectos: async (parents, args)=>{
-        const proyectos = await ProjectModel.find().populate('lider');
+        const proyectos = await ProjectModel.find();
         return proyectos;
 
     },

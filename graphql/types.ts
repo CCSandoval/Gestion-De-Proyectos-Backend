@@ -1,57 +1,62 @@
-import { gql } from "apollo-server-express";
+import { projectTypes } from '../models/projects/types';
+import { enumTypes } from '../models/enums/types';
 
-export const types = gql`
-  scalar Date
+export const types = [ projectTypes, enumTypes];
 
-  enum Enum_UserRol {
-    LIDER
-    ADMINISTRADOR
-    ESTUDIANTE
-  }
-  enum Enum_UserState {
-    AUTORIZADO
-    NO_AUTORIZADO
-    PENDIENTE
-  }
+// import { gql } from "apollo-server-express";
 
-  enum Enum_InscriptionState {
-    ACEPTADA
-    RECHAZADA
-    PENDIENTE
-  }
+// export const types = gql`
+//   scalar Date
 
-  type Usuario {
-    _id: ID!
-    correo: String!
-    identificacion: String!
-    nombre: String!
-    apellido: String!
-    rol: Enum_UserRol!
-    estado: Enum_UserState
-  }
+//   enum Enum_UserRol {
+//     LIDER
+//     ADMINISTRADOR
+//     ESTUDIANTE
+//   }
+//   enum Enum_UserState {
+//     AUTORIZADO
+//     NO_AUTORIZADO
+//     PENDIENTE
+//   }
 
-  type Inscripcion {
-    _id: ID!
-    fechaInscripcion: Date
-    fechaIngreso: Date
-    fechaEgreso: Date
-    estado: Enum_InscriptionState
-    proyecto: String
-    estudiante: Usuario!
-  }
+//   enum Enum_InscriptionState {
+//     ACEPTADA
+//     RECHAZADA
+//     PENDIENTE
+//   }
 
-  type Query {
-    Usuarios: [Usuario]
-    Inscripciones: [Inscripcion]
-  }
+//   type Usuario {
+//     _id: ID!
+//     correo: String!
+//     identificacion: String!
+//     nombre: String!
+//     apellido: String!
+//     rol: Enum_UserRol!
+//     estado: Enum_UserState
+//   }
 
-  type Mutation {
-    crearInscripcion(
-      fechaIngreso: Date
-      fechaEgreso: Date
-      estado: Enum_InscriptionState
-      proyecto: String
-      estudiante: String!
-    ): Inscripcion
-  }
-`;
+//   type Inscripcion {
+//     _id: ID!
+//     fechaInscripcion: Date
+//     fechaIngreso: Date
+//     fechaEgreso: Date
+//     estado: Enum_InscriptionState
+//     proyecto: String
+//     estudiante: Usuario!
+//   }
+
+//   type Query {
+//     Usuarios: [Usuario]
+//     Inscripciones: [Inscripcion]
+//   }
+
+//   type Mutation {
+//     crearInscripcion(
+//       fechaIngreso: Date
+//       fechaEgreso: Date
+//       estado: Enum_InscriptionState
+//       proyecto: String
+//       estudiante: String!
+//     ): Inscripcion
+//   }
+// `;
