@@ -15,11 +15,6 @@ export const resolvers = {
       );
       return inscripciones;
     },
-
-    Avances: async (parent,args) =>{
-      const avances = await advancementModel.find().populate('proyecto').populate('creadoPor');
-      return avances;
-    }
   },
   Mutation: {
     crearInscripcion: async (parent, args) => {

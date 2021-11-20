@@ -5,11 +5,11 @@ scalar Date
 
 type Avance{
     _id: ID!
-    fecha: Date;
-    descripcion: String;
-    observaciones: [String];
-    proyecto: Proyecto;
-    creadPor: Usuario!;
+    fecha: Date!
+    descripcion: String!
+    observaciones: [String]
+    proyecto: Proyecto!
+    creadPor: Usuario!
   }
 
   type Query{
@@ -22,7 +22,7 @@ type Avance{
     descripcion: String!
     proyecto: String!
     creadPor: String!
-      )
+      ): Avance
   }
 `;
 
