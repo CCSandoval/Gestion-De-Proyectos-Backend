@@ -16,12 +16,12 @@ type Avance{
       Avances:[Avance]
   }
 
-  type mutation{
+  type Mutation{
     crearAvance(
     fecha: Date!
     descripcion: String!
     proyecto: String!
-    creadPor: String!
+    creadoPor: String!
       ): Avance
   }
 `;

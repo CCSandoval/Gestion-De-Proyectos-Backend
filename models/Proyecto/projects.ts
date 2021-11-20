@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo } from "./enums";
-import { UserModel } from "./user";
-import { InscriptionModel } from "./inscription";
+import { Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo } from "../enums";
+import { UserModel } from "../User/user";
+import { InscriptionModel } from "../Inscripciones/inscription";
 
 interface Project {
   nombre: string;
@@ -57,11 +57,11 @@ const ProjectSchema = new Schema<Project>({
             },
         },
     ],
-    inscripciones:{
-        type: Schema.Types.ObjectId,
-        ref: InscriptionModel,
-        required: true,
-      },
+    // inscripciones:{
+    //     type: Schema.Types.ObjectId,
+    //     ref: InscriptionModel,
+    //     required: true,
+    //   },
     avances:{
         type: Schema.Types.ObjectId,
     }
