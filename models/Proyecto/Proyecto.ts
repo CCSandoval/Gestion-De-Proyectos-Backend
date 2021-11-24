@@ -1,7 +1,11 @@
 import { Schema, model } from "mongoose";
-import { Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo } from "./enums";
-import { UserModel } from "./user";
-import { InscriptionModel } from "./inscription";
+import {
+  Enum_EstadoProyecto,
+  Enum_FaseProyecto,
+  Enum_TipoObjetivo,
+} from "../Enums/enums";
+import { UserModel } from "../Usuario/Usuario";
+import { InscriptionModel } from "../Inscripcion/Inscripcion";
 
 interface Project {
   nombre: string;
@@ -20,10 +24,10 @@ const ProjectSchema = new Schema<Project>({
   nombre: {
     type: String,
   },
-  presupuesto:{
+  presupuesto: {
     type: Number,
   },
-  lider:{
+  lider: {
     type: Schema.Types.ObjectId,
     ref: UserModel,
     required: true,
@@ -45,26 +49,26 @@ const ProjectSchema = new Schema<Project>({
     default: Enum_FaseProyecto.NULL,
   },
   objetivo: [
-        {
-            descripcion:{
-                type:String,
-                required:true,
-            },
-            tipo: {
-                type:String,
-                enum: Enum_TipoObjetivo,
-                required:true,
-            },
-        },
-    ],
-    // inscripciones:{
-    //     type: Schema.Types.ObjectId,
-    //     ref: InscriptionModel,
-    //     required: true,
-    //   },
-    avances:{
-        type: Schema.Types.ObjectId,
-    }
+    {
+      descripcion: {
+        type: String,
+        required: true,
+      },
+      tipo: {
+        type: String,
+        enum: Enum_TipoObjetivo,
+        required: true,
+      },
+    },
+  ],
+  // inscripciones:{
+  //     type: Schema.Types.ObjectId,
+  //     ref: InscriptionModel,
+  //     required: true,
+  //   },
+  avances: {
+    type: Schema.Types.ObjectId,
+  },
 });
 
 export const ProjectModel = model("Proyecto", ProjectSchema);

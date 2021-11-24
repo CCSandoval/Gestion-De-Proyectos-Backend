@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { Enum_InscriptionState } from "./enums";
-import { ProjectModel } from "./projects";
-import { UserModel } from "./user";
+import { Enum_InscriptionState } from "../Enums/enums";
+import { ProjectModel } from "../Proyecto/Proyecto";
+import { UserModel } from "../Usuario/Usuario";
 
 interface Inscription {
   fechaInscripcion: Date;

@@ -1,10 +1,11 @@
 {
-  "name": "Gestion-De-Proyectos-Backend",
+  "name": "gestion-de-proyectos-backend",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "dev": "nodemon index.ts"
   },
   "dependencies": {
     "apollo-server-express": "^3.5.0",

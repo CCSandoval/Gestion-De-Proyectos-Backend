@@ -1,6 +1,6 @@
-import { advancementModel } from "../models/Avance/advance";
-import { InscriptionModel } from "../models/inscription";
-import { UserModel } from "../models/user";
+import { advancementModel } from "../models/Avance/Avance";
+import { InscriptionModel } from "../models/Inscripcion/Inscripcion";
+import { UserModel } from "../models/Usuario/Usuario";
 import { resolverAvance } from "../models/Avance/resolver";
 
 export const resolvers = {
@@ -30,4 +30,4 @@ export const resolvers = {
   },
 };
 
-export const resolver =[resolverAvance]
+export const resolver = [resolverAvance];

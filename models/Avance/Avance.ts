@@ -1,12 +1,12 @@
 import { Schema, model } from "mongoose";
-import { UserModel } from "../user";
+import { UserModel } from "../Usuario/Usuario";
 
 interface Advance {
   fecha: Date;
   descripcion: string;
   observaciones: [string];
   proyecto: Schema.Types.ObjectId;
-  creadPor: Schema.Types.ObjectId;
+  creadoPor: Schema.Types.ObjectId;
 }
 
 const advancementSchema = new Schema<Advance>({
@@ -27,13 +27,13 @@ const advancementSchema = new Schema<Advance>({
     type: Schema.Types.ObjectId,
     required: true,
   },
-  creadPor: {
+  creadoPor: {
     type: Schema.Types.ObjectId,
     ref: UserModel,
     required: true,
   },
 });
 
-const advancementModel = model('Avance', advancementSchema)
+const advancementModel = model("Avance", advancementSchema);
 
-export {advancementModel};
+export { advancementModel };
