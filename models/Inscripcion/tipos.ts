@@ -7,7 +7,7 @@ export const tiposInscripcion = gql`
     fechaIngreso: Date
     fechaEgreso: Date
     estado: Enum_InscriptionState
-    proyecto: String
+    proyecto: Proyecto!
     estudiante: Usuario!
   }
 
@@ -20,7 +20,7 @@ export const tiposInscripcion = gql`
       fechaIngreso: Date
       fechaEgreso: Date
       estado: Enum_InscriptionState
-      proyecto: String
+      proyecto: String!
       estudiante: String!
     ): Inscripcion
   }
