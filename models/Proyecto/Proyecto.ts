@@ -14,9 +14,9 @@ interface Project {
   fechaFin: Date;
   estado: Enum_EstadoProyecto;
   fase: Enum_FaseProyecto;
-  objetivo: [{ descripcion: String; tipo: Enum_TipoObjetivo }];
-  inscripciones: Schema.Types.ObjectId;
-  avances: Schema.Types.ObjectId;
+  objetivos: [Schema.Types.ObjectId];
+  inscripciones: [Schema.Types.ObjectId];
+  avances: [Schema.Types.ObjectId];
   lider: Schema.Types.ObjectId;
 }
 
@@ -48,27 +48,27 @@ const ProjectSchema = new Schema<Project>({
     enum: Enum_FaseProyecto,
     default: Enum_FaseProyecto.NULL,
   },
-  objetivo: [
-    {
-      descripcion: {
-        type: String,
-        required: true,
-      },
-      tipo: {
-        type: String,
-        enum: Enum_TipoObjetivo,
-        required: true,
-      },
-    },
-  ],
-  // inscripciones:{
-  //     type: Schema.Types.ObjectId,
-  //     ref: InscriptionModel,
-  //     required: true,
-  //   },
-  avances: {
-    type: Schema.Types.ObjectId,
-  },
+}, {
+  toJSON: { virtuals: true }, 
+  toObject: { virtuals: true },
 });
+
+ProjectSchema.virtual("avances",{
+  ref:"Avance",
+  localField: "_id",
+  foreignField:"proyecto"
+})
+
+ProjectSchema.virtual("inscripciones",{
+  ref:"inscription",
+  localField: "_id",
+  foreignField:"proyecto"
+})
+
+ProjectSchema.virtual("objetivos",{
+  ref:"objetivo",
+  localField: "_id",
+  foreignField: "proyecto"
+})
 
 export const ProjectModel = model("Proyecto", ProjectSchema);
