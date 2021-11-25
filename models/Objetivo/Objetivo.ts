@@ -5,7 +5,9 @@ import { ProjectModel } from "../Proyecto/Proyecto";
 interface Objective {
   descripcion: string;
   tipo: Enum_TipoObjetivo;
-  proyecto: Schema.Types.ObjectId;
+  proyecto: string;
+  //TODO: Cambiar 👆 a 👇
+  // proyecto: Schema.Types.ObjectId;
 }
 
 const ObjectiveSchema = new Schema<Objective>({
@@ -19,10 +21,14 @@ const ObjectiveSchema = new Schema<Objective>({
     required: true,
   },
   proyecto: {
-    type: Schema.Types.ObjectId,
-    ref: ProjectModel,
-    requiered: true,
+    type: String,
   },
+  //TODO: Cambiar 👆 a 👇
+  // proyecto: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: ProjectModel,
+  //   required: true,
+  // },
 });
 
 export const ObjectiveModel = model("objetivo", ObjectiveSchema);
