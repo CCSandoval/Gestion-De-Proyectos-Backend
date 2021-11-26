@@ -12,6 +12,7 @@ type Avance{
 
   type Query{
       Avances:[Avance]
+      avancesPorProyecto(_id: String!): [Avance]
   }
 
   type Mutation{
@@ -21,6 +22,16 @@ type Avance{
     proyecto: String!
     creadPor: String!
       ): Avance
+    
+    editarAvance(
+      _id: String!
+      descripcion: String
+    ):Avance
+
+    nuevaObservacion(
+      _id:String!
+      observacion: String
+    ): Avance
   }
 `;
 
