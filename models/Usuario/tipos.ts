@@ -13,4 +13,8 @@ export const tiposUsuario = gql`
   type Query {
     Usuarios: [Usuario]
   }
+  type Mutation {
+    aceptarUsuario(_id: String!): Usuario
+    rechazarUsuario(_id: String!): Usuario
+  }
 `;
