@@ -9,7 +9,7 @@ export const tiposEnums = gql`
 
   enum Enum_UserState {
     AUTORIZADO
-    NO_AUTORIZADO
+    RECHAZADO
     PENDIENTE
   }
 
