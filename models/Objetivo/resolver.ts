@@ -10,5 +10,14 @@ export const resolverObjetivos = {
       });
       return objetivo.populate("proyecto");
     },
+    editarObjetivo: async (parent, args) =>{
+      const objetivoEditado = await ObjectiveModel.findByIdAndUpdate(args._id,{
+        descripcion: args.descripcion,
+        tipo: args.tipo,
+      },{
+        new: true
+      })
+      return objetivoEditado;
+    },
   },
 };

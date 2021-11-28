@@ -23,5 +23,9 @@ export const tiposInscripcion = gql`
       proyecto: String!
       estudiante: String!
     ): Inscripcion
+
+    aceptarInscripcion(id: String!): Inscripcion
+
+    rechazarInscripcion(id: String!): Inscripcion
   }
 `;
