@@ -31,6 +31,10 @@ const userSchema = new Schema<User>(
       required: true,
       unique: true,
     },
+    password:{
+      type:String,
+      required: true,
+    },
     nombres: {
       type: String,
       required: true,
