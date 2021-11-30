@@ -2,10 +2,9 @@ import { Schema, model } from "mongoose";
 import {
   Enum_EstadoProyecto,
   Enum_FaseProyecto,
-  Enum_TipoObjetivo,
 } from "../Enums/enums";
 import { UserModel } from "../Usuario/Usuario";
-import { InscriptionModel } from "../Inscripcion/Inscripcion";
+
 
 interface Project {
   nombre: string;
@@ -71,4 +70,6 @@ ProjectSchema.virtual("objetivos",{
   foreignField: "proyecto"
 })
 
-export const ProjectModel = model("Proyecto", ProjectSchema);
+const ProjectModel = model("Proyecto", ProjectSchema);
+
+export {ProjectModel};

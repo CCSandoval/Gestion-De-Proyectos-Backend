@@ -5,12 +5,19 @@ export const tiposUsuario = gql`
     _id: ID!
     correo: String!
     identificacion: String!
-    nombre: String!
-    apellido: String!
-    rol: Enum_UserRol!
+    password: String!
+    nombres: String!
+    apellidos: String!
     estado: Enum_UserState
+    rol: Enum_UserRol!
+    avances: [Avance]
+    inscripciones: [Inscripcion]
   }
   type Query {
     Usuarios: [Usuario]
+  }
+  type Mutation {
+    aceptarUsuario(_id: String!): Usuario
+    rechazarUsuario(_id: String!): Usuario
   }
 `;

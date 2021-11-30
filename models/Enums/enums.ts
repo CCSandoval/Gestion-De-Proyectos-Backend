@@ -6,7 +6,7 @@ enum Enum_UserRol {
 
 enum Enum_UserState {
   AUTORIZADO = "AUTORIZADO",
-  NO_AUTORIZADO = "NO AUTORIZADO",
+  RECHAZADO = "RECHAZADO",
   PENDIENTE = "PENDIENTE",
 }
 
