@@ -5,7 +5,7 @@ import { tiposInscripcion } from "../models/Inscripcion/tipos";
 import { tiposEnums } from "../models/Enums/tipos";
 import { tiposProyecto } from "../models/Proyecto/tipos";
 import { tiposObjetivos } from "../models/Objetivo/tipos";
-
+import { tiposAuth } from "./auth/tipos";
 const tiposGlobales = gql`
   scalar Date
 `;
@@ -18,4 +18,5 @@ export const tipos = [
   tiposEnums,
   tiposProyecto,
   tiposObjetivos,
+  tiposAuth,
 ];
