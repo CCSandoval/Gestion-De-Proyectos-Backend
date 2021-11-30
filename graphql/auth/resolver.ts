@@ -51,7 +51,7 @@ export const resolversAuth = {
       //No existe el usuario?
       if (!usuario) {
         //Retorna error
-        return { error: "Usuario no encontrado" };
+        return { error: "user" };
       }
 
       //Verifica si las contraseñas son iguales usando la función compare de bcrypt
@@ -67,6 +67,11 @@ export const resolversAuth = {
             rol: usuario.rol,
             estado: usuario.estado,
           }),
+        };
+      } //Si no son iguales retorna error
+      else {
+        return {
+          error: "pass",
         };
       }
     },
