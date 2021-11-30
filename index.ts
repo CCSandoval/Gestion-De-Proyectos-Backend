@@ -5,10 +5,40 @@ import dotenv from "dotenv";
 import conectarBD from "./db/db";
 import { tipos } from "./graphql/types";
 import { resolvers } from "./graphql/resolvers";
+import { validateToken } from "./utils/tokenUtils";
 
 dotenv.config({ path: "./.env" });
 
-const server = new ApolloServer({ typeDefs: tipos, resolvers: resolvers });
+//Esta función recibe el token, lo valida y devuelve los datos del usario
+const getUserData = (token) => {
+  const verification = validateToken(token.split(" ")[1]);
+  if (verification.data) {
+    return verification.data;
+  } else {
+    return null;
+  }
+};
+
+const server = new ApolloServer({
+  typeDefs: tipos,
+  resolvers: resolvers,
+  //En el contexto quedará guardada la información del usuario que hace la petición
+  //Todas las peticiones que se hacen desde el front tendrán este contexto
+  context: ({ req }) => {
+    const token = req.headers?.authorization ?? null; //Hay token? Asignarlo a token, sino, asignar null
+    if (token) {
+      //Es valido el token?
+      const userData = getUserData(token);
+      if (userData) {
+        //Si la información del usuario es válida la retorna
+        return { userData };
+      }
+    } else {
+      //Si no hay token devuelve null
+      return null;
+    }
+  },
+});
 
 const app = express();
 
