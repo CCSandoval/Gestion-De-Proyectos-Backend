@@ -34,6 +34,12 @@ export const tiposProyecto = gql`
       Avance:String!
     ): Proyecto
 
+    editarProyecto(
+      _id: String!
+      nombre: String!
+      presupuesto: Float!
+    ): Proyecto
+
     activarProyecto(_id:String!):Proyecto
   }
 

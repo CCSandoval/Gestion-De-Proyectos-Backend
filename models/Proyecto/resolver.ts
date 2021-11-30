@@ -1,5 +1,6 @@
 import {Enum_EstadoProyecto} from "../Enums/enums";
 import { ProjectModel } from "./Proyecto";
+import { InscriptionModel } from "../Inscripcion/Inscripcion"
 
 export const resolverProyecto = {
     Query: {
@@ -35,6 +36,17 @@ export const resolverProyecto = {
             });
             return proyecto;
         },
+        editarProyecto: async (parent,args) =>{
+            const proyectoEditado = await ProjectModel.findByIdAndUpdate(
+                args._id,
+                {
+                    nombre: args.nombre,
+                    presupuesto: args.presupuesto,
+                },
+                {new:true}
+            );
+            return proyectoEditado;
+        },
         activarProyecto: async (parent, args) => {
             const proyectoActivado = await ProjectModel.findByIdAndUpdate(
                 args._id,{
@@ -46,6 +58,16 @@ export const resolverProyecto = {
             );
             return proyectoActivado;
         },
+        /*desactivarProyecto: async (parent, args) =>{
+           const proyectoDesactivado = await ProjectModel.findByIdAndUpdate(
+                args._id,{
+                    estado: Enum_EstadoProyecto.INACTIVO,
+                },
+            InscriptionModel.updateMany(
+                {args._id},{},update);
+            );
+            return proyectoDesactivado;
+        },*/
     },
 };
 
