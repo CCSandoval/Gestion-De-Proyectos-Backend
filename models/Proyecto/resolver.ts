@@ -1,4 +1,4 @@
-import {Enum_EstadoProyecto} from "../Enums/enums";
+import {Enum_EstadoProyecto, Enum_FaseProyecto} from "../Enums/enums";
 import { ProjectModel } from "./Proyecto";
 import { InscriptionModel } from "../Inscripcion/Inscripcion"
 
@@ -58,16 +58,48 @@ export const resolverProyecto = {
             );
             return proyectoActivado;
         },
-        /*desactivarProyecto: async (parent, args) =>{
+        desactivarProyecto: async (parent, args) =>{
            const proyectoDesactivado = await ProjectModel.findByIdAndUpdate(
                 args._id,{
                     estado: Enum_EstadoProyecto.INACTIVO,
                 },
+                {new: true}
+            );
             InscriptionModel.updateMany(
-                {args._id},{},update);
+                {
+                proyecto: args._id,
+                },
+                {
+                $set:{
+                    fechaEgreso: new Date(Date.now()),
+                    }
+                    
+                },
+                {new: true}
             );
             return proyectoDesactivado;
-        },*/
+        },
+        terminarProyecto: async (parent, args) =>{
+            const proyectoTerminado = await ProjectModel.findByIdAndUpdate(
+                 args._id,{
+                     fase: Enum_FaseProyecto.TERMINADO,
+                     estado: Enum_EstadoProyecto.INACTIVO,
+                 },
+                 {new: true}
+             );
+             InscriptionModel.updateMany(
+                 {
+                 proyecto: args._id,
+                 },
+                 {
+                 $set:{
+                     fechaEgreso: new Date(Date.now()),
+                     }
+                 },
+                 {new: true}
+             );
+             return proyectoTerminado;
+         },
     },
 };
 

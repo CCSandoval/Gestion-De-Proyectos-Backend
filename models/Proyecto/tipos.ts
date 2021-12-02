@@ -40,8 +40,17 @@ export const tiposProyecto = gql`
       presupuesto: Float!
     ): Proyecto
 
-    activarProyecto(_id:String!):Proyecto
+    activarProyecto(
+      _id:String!
+      ):Proyecto
+  
+  terminarProyecto(
+    _id:String!
+    ):Proyecto
+  
+  desactivarProyecto(
+    _id:String!
+    ):Proyecto
   }
-
-
 `;
+
