@@ -17,6 +17,7 @@ interface Project {
   inscripciones: [Schema.Types.ObjectId];
   avances: [Schema.Types.ObjectId];
   lider: Schema.Types.ObjectId;
+  usuarios : [Schema.Types.ObjectId];
 }
 
 const ProjectSchema = new Schema<Project>({
@@ -69,6 +70,14 @@ ProjectSchema.virtual("objetivos",{
   localField: "_id",
   foreignField: "proyecto"
 })
+
+ProjectSchema.virtual("Usuarios",{
+  ref:"User",
+  localField: "_id",
+  foreignField: "proyecto"
+})
+
+
 
 const ProjectModel = model("Proyecto", ProjectSchema);
 

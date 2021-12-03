@@ -12,10 +12,12 @@ export const tiposUsuario = gql`
     rol: Enum_UserRol!
     avances: [Avance]
     inscripciones: [Inscripcion]
+    proyectos : [Proyecto]
   }
   type Query {
     Usuarios: [Usuario]
     Usuario(_id: String!): Usuario
+    
   }
   type Mutation {
     aceptarUsuario(_id: String!): Usuario

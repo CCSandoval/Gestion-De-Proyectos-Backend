@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { Enum_UserRol, Enum_UserState } from "../Enums/enums";
+import { ProjectModel } from "../Proyecto/Proyecto";
 
 interface User {
   correo: string;
@@ -11,6 +12,7 @@ interface User {
   estado: Enum_UserState;
   avances: [Schema.Types.ObjectId];
   inscripciones: [Schema.Types.ObjectId];
+  proyectos : [Schema.Types.ObjectId];
 }
 
 const userSchema = new Schema<User>(
@@ -53,6 +55,10 @@ const userSchema = new Schema<User>(
       enum: Enum_UserState,
       default: Enum_UserState.PENDIENTE,
     },
+    proyectos: [{
+      type: Schema.Types.ObjectId,
+      required: false,      
+    }]
   },
   {
     toJSON: { virtuals: true },
@@ -71,6 +77,8 @@ userSchema.virtual("inscripciones", {
   localField: "_id",
   foreignField: "estudiante",
 }); //PARA POPULAR LAS INSCRIPCIONES
+
+
 
 const UserModel = model("User", userSchema);
 

@@ -2,7 +2,7 @@ import {Enum_EstadoProyecto, Enum_FaseProyecto} from "../Enums/enums";
 import { ProjectModel } from "./Proyecto";
 import { InscriptionModel } from "../Inscripcion/Inscripcion"
 
-export const resolverProyecto = {
+const resolverProyecto = {
     Query: {
         Proyectos: async (parent, args) => {
             const proyectos = await ProjectModel.find()
@@ -102,6 +102,8 @@ export const resolverProyecto = {
          },
     },
 };
+
+export {resolverProyecto};
 
 
 

@@ -13,11 +13,13 @@ export const tiposProyecto = gql`
     objetivos: [Objetivo]
     avances: [Avance]
     inscripcion: [Inscripcion]
+    usuarios : [Usuario]
   }
 
   type Query{
     Proyectos: [Proyecto]
     proyectoFiltrado(_idLider: String!) : [Proyecto]
+    UsuariosPorProyecto( _id : String!) : [Proyecto]
   }
 
   type Mutation{
