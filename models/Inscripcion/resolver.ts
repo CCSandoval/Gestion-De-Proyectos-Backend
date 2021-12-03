@@ -1,4 +1,5 @@
 import { Enum_InscriptionState } from "../Enums/enums";
+import { ProjectModel } from "../Proyecto/Proyecto";
 import { InscriptionModel } from "./Inscripcion";
 
 export const resolversInscripcion = {

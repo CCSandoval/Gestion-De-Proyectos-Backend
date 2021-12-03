@@ -20,6 +20,13 @@ const resolverProyecto = {
             .populate('inscripcion');
             return proyectoFiltrado;
         },
+
+        InscripcionesPorProyecto: async (parent, args) => {
+            const inscripcionesP = await ProjectModel.findById(
+              args.proyecto
+            ).populate('inscripcion');
+            return inscripcionesP;
+          },
     },
     Mutation: {
         crearProyecto: async (parent, args) => {
