@@ -24,6 +24,13 @@ const resolverProyecto = {
             .populate({path:"inscripciones", populate:{path:"estudiante", populate:{path:"nombres apellidos identificacion correo"}}})
             return proyectoFiltrado;
         },
+
+        InscripcionesPorProyecto: async (parent, args) => {
+            const inscripcionesP = await ProjectModel.findById(
+              args.proyecto
+            ).populate('inscripcion');
+            return inscripcionesP;
+          },
     },
     Mutation: {
         crearProyecto: async (parent, args) => {
