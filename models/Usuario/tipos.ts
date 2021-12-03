@@ -12,7 +12,6 @@ export const tiposUsuario = gql`
     rol: Enum_UserRol!
     avances: [Avance]
     inscripciones: [Inscripcion]
-    proyectos : [Proyecto]
   }
   type Query {
     Usuarios: [Usuario]

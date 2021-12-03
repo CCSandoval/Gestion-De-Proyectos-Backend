@@ -10,7 +10,6 @@ export const tiposInscripcion = gql`
     proyecto: Proyecto!
     estudiante: Usuario!
   }
-
   type Query {
     Inscripciones: [Inscripcion]
   }

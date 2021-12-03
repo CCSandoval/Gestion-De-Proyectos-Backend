@@ -12,7 +12,6 @@ interface User {
   estado: Enum_UserState;
   avances: [Schema.Types.ObjectId];
   inscripciones: [Schema.Types.ObjectId];
-  proyectos : [Schema.Types.ObjectId];
 }
 
 const userSchema = new Schema<User>(
@@ -55,10 +54,6 @@ const userSchema = new Schema<User>(
       enum: Enum_UserState,
       default: Enum_UserState.PENDIENTE,
     },
-    proyectos: [{
-      type: Schema.Types.ObjectId,
-      required: false,      
-    }]
   },
   {
     toJSON: { virtuals: true },
@@ -73,7 +68,7 @@ userSchema.virtual("avances", {
 }); //PARA POPULAR LOS AVANCES
 
 userSchema.virtual("inscripciones", {
-  ref: "inscripcion",
+  ref: "inscription",
   localField: "_id",
   foreignField: "estudiante",
 }); //PARA POPULAR LAS INSCRIPCIONES

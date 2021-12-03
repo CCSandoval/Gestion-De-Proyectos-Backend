@@ -48,6 +48,10 @@ const ProjectSchema = new Schema<Project>({
     enum: Enum_FaseProyecto,
     default: Enum_FaseProyecto.NULL,
   },
+  usuarios:[{
+    type: Schema.Types.ObjectId,
+    ref: UserModel
+  }]
 }, {
   toJSON: { virtuals: true }, 
   toObject: { virtuals: true },
@@ -70,14 +74,6 @@ ProjectSchema.virtual("objetivos",{
   localField: "_id",
   foreignField: "proyecto"
 })
-
-ProjectSchema.virtual("Usuarios",{
-  ref:"User",
-  localField: "_id",
-  foreignField: "proyecto"
-})
-
-
 
 const ProjectModel = model("Proyecto", ProjectSchema);
 

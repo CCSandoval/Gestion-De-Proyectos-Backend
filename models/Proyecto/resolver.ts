@@ -9,15 +9,19 @@ const resolverProyecto = {
             .populate('lider')
             .populate('avances')
             .populate('objetivos')
-            .populate('inscripcion');
+            .populate('inscripciones')
+            .populate('usuarios')
+            .populate({path:"inscripciones", populate:{path:"estudiante", populate:{path:"nombres apellidos identificacion correo"}}})
             return proyectos;
         },
-        filtrarProyecto: async (parent, args) => {
+        proyectoFiltrado: async (parent, args) => {
             const proyectoFiltrado = await ProjectModel.find({ lider: args._id })
             .populate('lider')
             .populate('avances')
             .populate('objetivos')
-            .populate('inscripcion');
+            .populate('inscripciones')
+            .populate('usuarios')
+            .populate({path:"inscripciones", populate:{path:"estudiante", populate:{path:"nombres apellidos identificacion correo"}}})
             return proyectoFiltrado;
         },
     },
@@ -27,12 +31,6 @@ const resolverProyecto = {
                 nombre: args.nombre,
                 presupuesto: args.presupuesto,
                 lider: args.lider,
-                fechaInicio: args.fechaInicio,
-                estado: args.estado,
-                fase: args.fase,
-                objetivo: args.objetivo,
-                avance: args.avance,
-                inscripcion: args.inscripcion,
             });
             return proyecto;
         },
