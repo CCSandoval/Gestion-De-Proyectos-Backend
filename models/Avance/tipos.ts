@@ -7,7 +7,7 @@ type Avance{
     descripcion: String!
     observaciones: [String]
     proyecto: Proyecto!
-    creadPor: Usuario!
+    creadoPor: Usuario!
   }
 
   type Query{
@@ -20,7 +20,7 @@ type Avance{
     fecha: Date!
     descripcion: String!
     proyecto: String!
-    creadPor: String!
+    creadoPor: String!
       ): Avance
     
     editarAvance(
