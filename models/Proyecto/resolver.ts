@@ -12,6 +12,7 @@ const resolverProyecto = {
             .populate('inscripciones')
             .populate('usuarios')
             .populate({path:"inscripciones", populate:{path:"estudiante", populate:{path:"nombres apellidos identificacion correo"}}})
+            .populate({path:"avances", populate:{path:"creadoPor", populate:{path:"nombres apellidos identificacion correo"}}})
             return proyectos;
         },
         proyectoFiltrado: async (parent, args) => {
@@ -22,6 +23,7 @@ const resolverProyecto = {
             .populate('inscripciones')
             .populate('usuarios')
             .populate({path:"inscripciones", populate:{path:"estudiante", populate:{path:"nombres apellidos identificacion correo"}}})
+            .populate({path:"avances", populate:{path:"creadoPor", populate:{path:"nombres apellidos identificacion correo"}}})
             return proyectoFiltrado;
         },
 

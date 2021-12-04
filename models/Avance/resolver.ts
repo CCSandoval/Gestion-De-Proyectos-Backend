@@ -25,7 +25,7 @@ const resolverAvance = {
       const avance = await advancementModel.create({
         fecha: args.fecha,
         descripcion: args.descripcion,
-        creadPor: args.creadPor,
+        creadoPor: args.creadoPor,
         proyecto: args.proyecto,
       });
       return avance;
