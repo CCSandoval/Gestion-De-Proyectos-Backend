@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { Enum_UserRol, Enum_UserState } from "../Enums/enums";
+import { ProjectModel } from "../Proyecto/Proyecto";
 
 interface User {
   correo: string;
@@ -67,10 +68,12 @@ userSchema.virtual("avances", {
 }); //PARA POPULAR LOS AVANCES
 
 userSchema.virtual("inscripciones", {
-  ref: "inscripcion",
+  ref: "inscription",
   localField: "_id",
   foreignField: "estudiante",
 }); //PARA POPULAR LAS INSCRIPCIONES
+
+
 
 const UserModel = model("User", userSchema);
 

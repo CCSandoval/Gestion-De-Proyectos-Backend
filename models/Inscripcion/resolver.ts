@@ -1,12 +1,12 @@
 import { Enum_InscriptionState } from "../Enums/enums";
 import { InscriptionModel } from "./Inscripcion";
-
+import { ProjectModel } from "../Proyecto/Proyecto";
 export const resolversInscripcion = {
   Query: {
     Inscripciones: async (parent, args) => {
-      const inscripciones = await InscriptionModel.find().populate(
-        "estudiante proyecto"
-      );
+      const inscripciones = await InscriptionModel.find()
+        .populate("estudiante")
+        .populate("proyecto")
       return inscripciones;
     },
   },
@@ -19,7 +19,7 @@ export const resolversInscripcion = {
         proyecto: args.proyecto,
         estudiante: args.estudiante,
       });
-      return inscripcion;
+      return inscripcion.populate("proyecto estudiante");
     },
     aceptarInscripcion: async (parent, args) => {
       const inscripcionAprobada = await InscriptionModel.findByIdAndUpdate(
@@ -30,7 +30,17 @@ export const resolversInscripcion = {
         },
         { new: true }
       );
-      return inscripcionAprobada;
+      const proyecto = await ProjectModel.findById(
+        inscripcionAprobada.proyecto
+      );
+      const estudiantes = proyecto.usuarios;
+      const proyectoConUsuario = await ProjectModel.findByIdAndUpdate(
+        inscripcionAprobada.proyecto,
+        {
+          usuarios: [...estudiantes, inscripcionAprobada.estudiante],
+        }
+      );
+      return inscripcionAprobada.populate("estudiante proyecto");
     },
 
     rechazarInscripcion: async (parent, args) => {
@@ -42,7 +52,9 @@ export const resolversInscripcion = {
           fechaEgreso: new Date(Date.now()),
         },
         { new: true }
-      );
+      )
+        .populate("proyecto")
+        .populate("estudiante");
       return inscripcionRechazada;
     },
   },

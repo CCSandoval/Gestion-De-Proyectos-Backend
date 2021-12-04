@@ -9,15 +9,18 @@ export const tiposProyecto = gql`
     fechaFin: Date
     estado: Enum_EstadoProyecto
     fase: Enum_FaseProyecto
-    lider:[Usuario]
+    lider: Usuario
     objetivos: [Objetivo]
     avances: [Avance]
-    inscripcion: [Inscripcion]
+    inscripciones: [Inscripcion]
+    usuarios: [Usuario]
   }
 
   type Query{
     Proyectos: [Proyecto]
     proyectoFiltrado(_idLider: String!) : [Proyecto]
+    UsuariosPorProyecto(_id: String!) : [Proyecto]
+    InscripcionesPorProyecto(proyecto: String!): [Proyecto]
   }
 
   type Mutation{
@@ -25,17 +28,25 @@ export const tiposProyecto = gql`
       nombre: String!
       presupuesto: Float!
       lider: String!
-      fechaInicio: Date
-      fechaFin:Date
-      estado: Enum_EstadoProyecto
-      fase:Enum_FaseProyecto
-      objetivo: String!
-      Inscripcion:String!
-      Avance:String!
     ): Proyecto
 
-    activarProyecto(_id:String!):Proyecto
+    editarProyecto(
+      _id: String!
+      nombre: String!
+      presupuesto: Float!
+    ): Proyecto
+
+    activarProyecto(
+      _id:String!
+      ):Proyecto
+  
+  terminarProyecto(
+    _id:String!
+    ):Proyecto
+  
+  desactivarProyecto(
+    _id:String!
+    ):Proyecto
   }
-
-
 `;
+

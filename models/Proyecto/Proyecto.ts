@@ -17,6 +17,7 @@ interface Project {
   inscripciones: [Schema.Types.ObjectId];
   avances: [Schema.Types.ObjectId];
   lider: Schema.Types.ObjectId;
+  usuarios : [Schema.Types.ObjectId];
 }
 
 const ProjectSchema = new Schema<Project>({
@@ -47,6 +48,10 @@ const ProjectSchema = new Schema<Project>({
     enum: Enum_FaseProyecto,
     default: Enum_FaseProyecto.NULL,
   },
+  usuarios:[{
+    type: Schema.Types.ObjectId,
+    ref: UserModel
+  }]
 }, {
   toJSON: { virtuals: true }, 
   toObject: { virtuals: true },
