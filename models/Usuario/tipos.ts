@@ -16,7 +16,7 @@ export const tiposUsuario = gql`
   type Query {
     Usuarios: [Usuario]
     Usuario(_id: String!): Usuario
-    
+    UsuariosPorProyecto(_id: String!) : [Usuario]
   }
   type Mutation {
     aceptarUsuario(_id: String!): Usuario
