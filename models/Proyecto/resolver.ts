@@ -26,7 +26,18 @@ const resolverProyecto = {
             .populate({path:"avances", populate:{path:"creadoPor", populate:{path:"nombres apellidos identificacion correo"}}})
             return proyectoFiltrado;
         },
-
+        proyectosPorUsuario: async(parent,args) => {
+            const proyectos = await ProjectModel.find()
+            let proyectosReturn = []
+            proyectos.map((proyecto)=>{
+                proyecto.usuarios.map((usuario)=>{
+                    if(usuario.toString() === args._id){
+                        proyectosReturn.push(proyecto)
+                    }
+                })
+            })
+            return proyectosReturn
+        },
         InscripcionesPorProyecto: async (parent, args) => {
             const inscripcionesP = await ProjectModel.findById(
               args.proyecto

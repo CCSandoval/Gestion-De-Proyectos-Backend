@@ -19,6 +19,7 @@ export const tiposProyecto = gql`
   type Query{
     Proyectos: [Proyecto]
     proyectoFiltrado(_idLider: String!) : [Proyecto]
+    proyectosPorUsuario(_id: String!):[Proyecto]
     InscripcionesPorProyecto(proyecto: String!): [Proyecto]
   }
 
