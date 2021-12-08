@@ -15,7 +15,7 @@ const resolverProyecto = {
             .populate({path:"avances", populate:{path:"creadoPor", populate:{path:"nombres apellidos identificacion correo"}}})
             return proyectos;
         },
-        proyectoFiltrado: async (parent, args) => {
+        proyectosLider: async (parent, args) => {
             const proyectoFiltrado = await ProjectModel.find({ lider: args._id })
             .populate('lider')
             .populate('avances')
