@@ -32,7 +32,7 @@ const resolverProyecto = {
             proyectos.map((proyecto)=>{
                 proyecto.usuarios.map((usuario)=>{
                     if(usuario.toString() === args._id){
-                        proyectosReturn.push(proyecto)
+                        proyectosReturn.push(proyecto.populate('lider objetivos'))
                     }
                 })
             })
