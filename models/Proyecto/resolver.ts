@@ -15,6 +15,18 @@ const resolverProyecto = {
             .populate({path:"avances", populate:{path:"creadoPor", populate:{path:"nombres apellidos identificacion correo"}}})
             return proyectos;
         },
+        Proyecto: async (parent, args) => {
+            console.log(args);
+            const proyecto = ProjectModel.findById(args._id)
+            .populate('lider')
+            .populate('avances')
+            .populate('objetivos')
+            .populate('inscripciones')
+            .populate('usuarios')
+            .populate({path:"inscripciones", populate:{path:"estudiante", populate:{path:"nombres apellidos identificacion correo"}}})
+            .populate({path:"avances", populate:{path:"creadoPor", populate:{path:"nombres apellidos identificacion correo"}}});
+            return proyecto;
+        },
         proyectosLider: async (parent, args) => {
             const proyectoFiltrado = await ProjectModel.find({ lider: args._id })
             .populate('lider')
