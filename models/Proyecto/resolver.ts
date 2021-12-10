@@ -1,6 +1,8 @@
 import {Enum_EstadoProyecto, Enum_FaseProyecto} from "../Enums/enums";
 import { ProjectModel } from "./Proyecto";
 import { InscriptionModel } from "../Inscripcion/Inscripcion"
+import {ObjectiveModel} from '../Objetivo/Objetivo'
+import {Enum_TipoObjetivo} from '../Enums/enums'
 
 const resolverProyecto = {
     Query: {
@@ -64,6 +66,22 @@ const resolverProyecto = {
                 presupuesto: args.presupuesto,
                 lider: args.lider,
             });
+
+            args.especificos.map(async (obj)=>{
+                await ObjectiveModel.create({
+                    tipo: Enum_TipoObjetivo.ESPECIFICO,
+                    proyecto: proyecto._id,
+                    descripcion: obj,
+                })
+            })
+            args.generales.map(async (obj)=>{
+                await ObjectiveModel.create({
+                    tipo: Enum_TipoObjetivo.ESPECIFICO,
+                    proyecto: proyecto._id,
+                    descripcion: obj,
+                })
+            })
+
             return proyecto;
         },
         editarProyecto: async (parent,args) =>{

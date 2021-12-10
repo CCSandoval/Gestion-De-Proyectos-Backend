@@ -29,6 +29,8 @@ export const tiposProyecto = gql`
       nombre: String!
       presupuesto: Float!
       lider: String!
+      especificos: [String]!
+      generales: [String]!
     ): Proyecto
 
     editarProyecto(
