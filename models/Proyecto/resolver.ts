@@ -76,7 +76,7 @@ const resolverProyecto = {
             })
             args.generales.map(async (obj)=>{
                 await ObjectiveModel.create({
-                    tipo: Enum_TipoObjetivo.ESPECIFICO,
+                    tipo: Enum_TipoObjetivo.GENERAL,
                     proyecto: proyecto._id,
                     descripcion: obj,
                 })
