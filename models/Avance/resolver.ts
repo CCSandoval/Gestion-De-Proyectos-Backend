@@ -23,7 +23,7 @@ const resolverAvance = {
   Mutation: {
     crearAvance: async (parent, args) => {
       const avance = await advancementModel.create({
-        fecha: args.fecha,
+        fecha: new Date(Date.now()),
         descripcion: args.descripcion,
         creadoPor: args.creadoPor,
         proyecto: args.proyecto,

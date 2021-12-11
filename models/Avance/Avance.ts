@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { ProjectModel } from "../Proyecto/Proyecto";
 import { UserModel } from "../Usuario/Usuario";
 
 interface Advance {
@@ -25,6 +26,7 @@ const advancementSchema = new Schema<Advance>({
   ],
   proyecto: {
     type: Schema.Types.ObjectId,
+    ref: ProjectModel,
     required: true,
   },
   creadoPor: {
