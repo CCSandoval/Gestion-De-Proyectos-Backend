@@ -24,14 +24,14 @@ const resolverAvance = {
   },
   Mutation: {
     crearAvance: async (parent, args) => {
-      const proyecto = await (
-        await ProjectModel.findById(args.proyecto)
-      ).populated("avances");
-      if (proyecto.avances === []) {
-        await ProjectModel.findByIdAndUpdate(args.proyecto, {
-          fase: Enum_FaseProyecto.DESARROLLO,
-        });
-      }
+      const proyecto = await ProjectModel.findById(args.proyecto).populate(
+        "avances"
+      );
+      console.log(proyecto);
+      console.log(proyecto.avances);
+      await ProjectModel.findByIdAndUpdate(args.proyecto, {
+        fase: Enum_FaseProyecto.DESARROLLO,
+      });
       const avance = await advancementModel.create({
         fecha: new Date(Date.now()),
         descripcion: args.descripcion,
