@@ -22,4 +22,17 @@ export const tiposUsuario = gql`
     aceptarUsuario(_id: String!): Usuario
     rechazarUsuario(_id: String!): Usuario
   }
+  type Mutation {
+    aceptarUsuario(_id: String!): Usuario
+    rechazarUsuario(_id: String!): Usuario
+
+    editarUsuario(
+      _id: String!
+      nombres: String!
+      correo: String!
+      identificacion: String!
+      password:String!
+      ): Usuario
+
+  }
 `;
