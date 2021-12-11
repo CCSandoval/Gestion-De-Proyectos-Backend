@@ -29,7 +29,7 @@ const resolverAvance = {
       ).populated("avances");
       if (proyecto.avances === []) {
         await ProjectModel.findByIdAndUpdate(args.proyecto, {
-          fase: Enum_FaseProyecto.INICIADO,
+          fase: Enum_FaseProyecto.DESARROLLO,
         });
       }
       const avance = await advancementModel.create({
