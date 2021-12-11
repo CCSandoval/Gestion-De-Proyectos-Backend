@@ -1,3 +1,5 @@
+import { Enum_FaseProyecto } from "../Enums/enums";
+import { ProjectModel } from "../Proyecto/Proyecto";
 import { advancementModel } from "./Avance";
 
 const resolverAvance = {
@@ -22,6 +24,14 @@ const resolverAvance = {
   },
   Mutation: {
     crearAvance: async (parent, args) => {
+      const proyecto = await (
+        await ProjectModel.findById(args.proyecto)
+      ).populated("avances");
+      if (proyecto.avances === []) {
+        await ProjectModel.findByIdAndUpdate(args.proyecto, {
+          fase: Enum_FaseProyecto.INICIADO,
+        });
+      }
       const avance = await advancementModel.create({
         fecha: new Date(Date.now()),
         descripcion: args.descripcion,
