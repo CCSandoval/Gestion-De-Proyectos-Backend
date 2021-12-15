@@ -100,7 +100,7 @@ const resolverProyecto = {
                 args._id,{
                     estado: Enum_EstadoProyecto.ACTIVO,
                     fechaInicio: new Date(Date.now()),
-
+                    fase: Enum_FaseProyecto.INICIADO
                 },
                 {new: true}
             );
@@ -110,6 +110,7 @@ const resolverProyecto = {
            const proyectoDesactivado = await ProjectModel.findByIdAndUpdate(
                 args._id,{
                     estado: Enum_EstadoProyecto.INACTIVO,
+                    usuarios:[]
                 },
                 {new: true}
             );
@@ -130,8 +131,10 @@ const resolverProyecto = {
         terminarProyecto: async (parent, args) =>{
             const proyectoTerminado = await ProjectModel.findByIdAndUpdate(
                  args._id,{
+                     fechaFin: new Date(Date.now()),
                      fase: Enum_FaseProyecto.TERMINADO,
                      estado: Enum_EstadoProyecto.INACTIVO,
+                     usuarios:[],
                  },
                  {new: true}
              );
